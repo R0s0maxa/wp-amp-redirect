@@ -14,6 +14,9 @@ if (!defined('WPINC')) {
     die;
 }
 
+define('AMP_REDIRECT_SETTINGS_GROUP', 'wp_amp_redirect_settings_group');
+define('AMP_REDIRECT_OPTION', 'wp_amp_redirect_template');
+
 include_once 'class-amp-redirect-options.php';
 include_once 'class-amp-redirect-options-helper.php';
 
