@@ -33,6 +33,10 @@ class AMP_Redirect
 
     public function filter_amp_urls($url)
     {
+        if (($parts = parse_url($url)) && !empty($parts['host'])) {
+            return str_replace($parts['host'], $parts['host'] . DIRECTORY_SEPARATOR . AMP_REDIRECT_QUERY_VAR, $url);
+        }
+
         return $url . AMP_REDIRECT_QUERY_VAR . DIRECTORY_SEPARATOR;
     }
 }
