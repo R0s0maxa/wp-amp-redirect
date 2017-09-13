@@ -3,14 +3,12 @@
 class AMP_Redirect_Options
 {
     private $themes;
+    private $template;
 
-    /**
-     * AMP_Redirect_Options constructor.
-     * @param $themes array
-     */
-    public function __construct($themes)
+    public function __construct()
     {
-        $this->themes = $themes;
+        $this->themes = wp_get_themes(['errors' => false]);
+        $this->template = get_option(AMP_REDIRECT_OPTION);
     }
 
     public function init()
@@ -41,7 +39,6 @@ class AMP_Redirect_Options
         if (!current_user_can('manage_options')) {
             return;
         }
-        $value = get_option(AMP_REDIRECT_OPTION);
         ob_start(); ?>
         <div class="wrap">
             <?php if (!empty($this->themes) && is_array($this->themes)) : ?>
@@ -63,7 +60,7 @@ class AMP_Redirect_Options
                                             continue;
                                         endif; ?>
                                         <option
-                                            value="<?php echo $theme->template; ?>" <?php selected($value, $theme->template, true); ?>><?php echo $theme->name; ?></option>
+                                            value="<?php echo $theme->template; ?>" <?php selected($this->template, $theme->template, true); ?>><?php echo $theme->name; ?></option>
                                     <?php endforeach; ?>
                                 </select>
                             </td>

@@ -18,26 +18,15 @@ define('AMP_REDIRECT_SETTINGS_GROUP', 'wp_amp_redirect_settings_group');
 define('AMP_REDIRECT_OPTION', 'wp_amp_redirect_template');
 
 include_once 'class-amp-redirect-options.php';
-include_once 'class-amp-redirect-options-helper.php';
+include_once 'сlass-amp-redirect.php';
 
 add_action('plugins_loaded', 'wp_amp_redirect_init');
 
 function wp_amp_redirect_init()
 {
-    $options_page = new AMP_Redirect_Options(AMP_Redirect_Options_Helper::get_existing_themes());
-    $options_page->init();
-}
+    $options_page = new AMP_Redirect_Options();
+    $redirect = new AMP_Redirect();
 
-//add_action('plugins_loaded', 'amp_redirect_init', 1);
-//
-//function amp_redirect_init()
-//{
-//    add_filter('stylesheet', 'check_correct_theme');
-//    add_filter('template', 'check_correct_theme');
-//}
-//
-//
-//function check_correct_theme()
-//{
-//    return (!empty($_GET['amp'])) ? 'theme_name1' : 'theme_name2';
-//}
+    $options_page->init();
+//    $redirect->init();
+}
