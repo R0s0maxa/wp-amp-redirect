@@ -15,12 +15,13 @@ if (!defined('WPINC')) {
 }
 
 include_once 'class-amp-redirect-options.php';
+include_once 'class-amp-redirect-options-helper.php';
 
 add_action('plugins_loaded', 'wp_amp_redirect_init');
 
 function wp_amp_redirect_init()
 {
-    $options_page = new AMP_Redirect_Options();
+    $options_page = new AMP_Redirect_Options(AMP_Redirect_Options_Helper::get_existing_themes());
     $options_page->init();
 }
 
