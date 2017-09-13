@@ -23,9 +23,16 @@ class AMP_Redirect
         $urls_parts = explode('/', $_SERVER['REQUEST_URI']);
 
         if (is_array($urls_parts) && in_array(AMP_REDIRECT_QUERY_VAR, $urls_parts)) {
+            add_filter('home_url', [$this, 'filter_amp_urls']);
             return true;
         }
 
         return false;
+    }
+
+
+    public function filter_amp_urls($url)
+    {
+        return $url . AMP_REDIRECT_QUERY_VAR . DIRECTORY_SEPARATOR;
     }
 }
