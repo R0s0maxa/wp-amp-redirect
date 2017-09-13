@@ -16,11 +16,14 @@ if (!defined('WPINC')) {
 
 define('AMP_REDIRECT_SETTINGS_GROUP', 'wp_amp_redirect_settings_group');
 define('AMP_REDIRECT_OPTION', 'wp_amp_redirect_template');
+define('AMP_REDIRECT_QUERY_VAR', 'amp');
 
 include_once 'class-amp-redirect-options.php';
+include_once 'class-amp-redirect-rewrite.php';
 include_once 'сlass-amp-redirect.php';
 
 add_action('plugins_loaded', 'wp_amp_redirect_init');
+add_action('init', 'wp_amp_redirect_rewrites_init');
 
 function wp_amp_redirect_init()
 {
@@ -29,4 +32,10 @@ function wp_amp_redirect_init()
 
     $options_page->init();
 //    $redirect->init();
+}
+
+function wp_amp_redirect_rewrites_init()
+{
+    $rewrites = new AMP_Redirect_Rewrite();
+    $rewrites->init();
 }
