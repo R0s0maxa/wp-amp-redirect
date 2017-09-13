@@ -39,3 +39,8 @@ function wp_amp_redirect_rewrites_init()
     $rewrites = new AMP_Redirect_Rewrite();
     $rewrites->init();
 }
+
+register_deactivation_hook(__FILE__, function () {
+    $options_page = new AMP_Redirect_Options();
+    $options_page->unregister_redirect_settings();
+});

@@ -33,6 +33,11 @@ class AMP_Redirect_Options
         register_setting(AMP_REDIRECT_SETTINGS_GROUP, AMP_REDIRECT_OPTION);
     }
 
+    public function unregister_redirect_settings()
+    {
+        unregister_setting(AMP_REDIRECT_SETTINGS_GROUP, AMP_REDIRECT_OPTION);
+    }
+
     public function options_page()
     {
         // check user capabilities
@@ -67,10 +72,6 @@ class AMP_Redirect_Options
                         </tr>
                         </tbody>
                     </table>
-                    <!--                    <p class="submit"><input type="submit" name="submit"
-                    id="submit" class="button button-primary"-->
-                    <!--                                             value="Save Changes"></p>-->
-
                     <?php submit_button(); ?>
                 </form>
             <?php else : ?>
