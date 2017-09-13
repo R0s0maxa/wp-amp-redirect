@@ -9,16 +9,31 @@
   License: GPL2
  */
 
-add_action('plugins_loaded', 'amp_redirect_init', 1);
-
-function amp_redirect_init()
-{
-    add_filter('stylesheet', 'check_correct_theme');
-    add_filter('template', 'check_correct_theme');
+// If this file is accessed directory, then abort.
+if (!defined('WPINC')) {
+    die;
 }
 
+include_once 'class-amp-redirect-options.php';
 
-function check_correct_theme()
+add_action('plugins_loaded', 'wp_amp_redirect_init');
+
+function wp_amp_redirect_init()
 {
-    return (!empty($_GET['amp'])) ? 'theme_name1' : 'theme_name2';
+    $options_page = new AMP_Redirect_Options();
+    $options_page->init();
 }
+
+//add_action('plugins_loaded', 'amp_redirect_init', 1);
+//
+//function amp_redirect_init()
+//{
+//    add_filter('stylesheet', 'check_correct_theme');
+//    add_filter('template', 'check_correct_theme');
+//}
+//
+//
+//function check_correct_theme()
+//{
+//    return (!empty($_GET['amp'])) ? 'theme_name1' : 'theme_name2';
+//}
