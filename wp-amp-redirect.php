@@ -31,7 +31,7 @@ function wp_amp_redirect_init()
     $redirect = new AMP_Redirect();
 
     $options_page->init();
-//    $redirect->init();
+    $redirect->init();
 }
 
 function wp_amp_redirect_rewrites_init()

@@ -144,6 +144,5 @@ class AMP_Redirect_Rewrite
                 );
             }
         }
-//        add_action('init', 'ampforwp_add_custom_rewrite_rules');
     }
 }
